@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>留言牆</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>留言牆</h1>
+        <form id="messageForm">
+            <input type="text" id="name" placeholder="你的名字" required>
+            <textarea id="message" placeholder="寫下你的留言..." required></textarea>
+            <button type="submit">送出</button>
+        </form>
+        <div class="messages" id="messages">
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById("messageForm");
+        const messagesDiv = document.getElementById("messages");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const message = document.getElementById("message").value;
+
+            const newMessage = document.createElement("div");
+            newMessage.classList.add("message");
+            newMessage.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
+            messagesDiv.prepend(newMessage);
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
